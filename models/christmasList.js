@@ -5,8 +5,7 @@ export async function getChristmasList() {
   return data.rows;
 }
 
-export async function newChristmasItem(listItem) {
-  const { item, completed } = listItem;
+export async function newChristmasItem(item, completed) {
   const data = await pool.query(
     `INSERT INTO christmasList (
       item,
@@ -27,7 +26,7 @@ export async function markAsCompleted(id, completed){
 
 export async function deleteChristmasItem(id) {
   const data = await pool.query(
-    `DELETE * from christmasList where id=$1 RETURNING *;`,
+    `DELETE FROM christmasList where id=$1 RETURNING *;`,
     [id]
   );
   return data.rows[0];

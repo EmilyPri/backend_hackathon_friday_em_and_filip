@@ -9,8 +9,8 @@ christmasRouter.get("/", async (req, res) => {
 });
 
 christmasRouter.post("/", async (req, res) => {
-  const { listItem } = req.body;
-  const result = await newChristmasItem(listItem);
+  //const { listItem } = req.body;
+  const result = await newChristmasItem(req.body.item, req.body.completed);
   res.status(201).json({ success: true, payload: result });
 });
 
